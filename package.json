@@ -1,0 +1,32 @@
+{
+  "name": "quick-check-task",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "verify-format": "prettier --check src/**",
+    "format": "prettier --write src/**",
+    "dev": "nodemon --watch './**/*.ts' --exec 'ts-node' src/main.ts",
+    "orm": "npx typeorm-ts-node-commonjs",
+    "db:g:migration": "yarn orm migration:generate src/database/migrations/create-items -d src/database/data-source.ts",
+    "db:migrate": "yarn orm migration:run -d src/database/data-source.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bullmq": "^1.91.1",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "gen-env-types": "^1.3.4",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.3.9"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.7.18",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  }
+}
