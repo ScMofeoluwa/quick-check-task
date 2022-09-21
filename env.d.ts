@@ -7,8 +7,8 @@ declare global {
       DB_NAME: string;
       DB_PASSWORD: string;
       DB_PORT: string;
-      PORT: string;
       NODE_ENV: string;
+      BASE_URL: string;
     }
   }
 }
