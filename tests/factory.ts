@@ -1,5 +1,5 @@
 import factory from "factory-girl";
-import { Item } from "../database/entity/Item";
+import { Item } from "../src/database/entity/Item";
 
 const newsType = ["job", "story", "comment", "poll", "pollopt"];
 

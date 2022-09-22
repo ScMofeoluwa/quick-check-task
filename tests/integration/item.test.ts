@@ -1,7 +1,7 @@
 import supertest from "supertest";
-import { DBSource } from "../../database/data-source";
+import { DBSource } from "../../src/database/data-source";
 import { factory } from "../factory";
-import { app } from "../../main";
+import { app } from "../../src/main";
 
 describe("/items", () => {
     beforeAll(async () => {
