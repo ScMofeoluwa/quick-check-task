@@ -1,7 +1,6 @@
 import { Data } from "../types";
 import { config } from "../config/config";
-import { DBSource } from "../database/data-source";
-import { Item } from "../database/entity/Item";
+import { ItemRespository } from "../database";
 import axios, { AxiosInstance } from "axios";
 
 const options: Data = {
@@ -10,7 +9,6 @@ const options: Data = {
 };
 
 export async function poll() {
-  const userRespository = DBSource.getRepository(Item);
   const axiosInstance: AxiosInstance = axios.create(options);
   const response: number[] = (
     await axiosInstance.get("newstories.json")
@@ -21,15 +19,16 @@ export async function poll() {
     newsArr.push(news);
   }
   for (const news of newsArr) {
-    const res = await userRespository.findOneBy({ hackerId: news.id });
+    const res = await ItemRespository.findOneBy({ hackerId: news.id });
     if (!res) {
-      const des = userRespository.create({
+      const des = ItemRespository.create({
         hackerId: news.id,
         title: news?.title,
         text: news?.text,
         url: news?.url,
+        type: news.type,
       });
-      await userRespository.save(des);
+      await ItemRespository.save(des);
     }
   }
 }
