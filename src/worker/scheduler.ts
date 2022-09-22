@@ -11,7 +11,7 @@ pollQueue.add("poll", {}, { repeat: { pattern: config.pattern } });
 
 export const pollWorker = new Worker(
   "QuickCheck",
-  async (job) => {
+  async () => {
     await poll();
   },
   {
