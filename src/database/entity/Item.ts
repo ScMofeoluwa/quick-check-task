@@ -1,4 +1,5 @@
 import { Column, Entity, BaseEntity, PrimaryGeneratedColumn } from "typeorm";
+import { NewsType } from "../../types";
 
 @Entity("items")
 export class Item extends BaseEntity {
@@ -6,17 +7,23 @@ export class Item extends BaseEntity {
   id!: string;
 
   @Column()
-  hackerId!: number;
+  hackerId?: number;
 
   @Column()
-  title?: string;
+  title!: string;
 
   @Column({ type: "boolean", default: true })
-  byHackerNews!: boolean;
+  byHackerNews?: boolean;
 
   @Column()
   text?: string;
 
   @Column()
   url?: string;
+
+  @Column({
+    type: "enum",
+    enum: ["job", "story", "comment", "poll", "pollopt"],
+  })
+  type!: NewsType;
 }
