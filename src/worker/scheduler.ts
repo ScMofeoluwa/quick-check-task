@@ -1,11 +1,9 @@
-import { Queue, Worker, QueueScheduler } from "bullmq";
+import { Queue, Worker } from "bullmq";
 import { poll } from "./poller";
 import { config } from "../config/config";
 
 const connection = { host: "127.0.0.1", port: 6666 };
-const pollQueueScheduler = new QueueScheduler("QuickCheck", {
-  connection: connection,
-});
+
 const pollQueue = new Queue("QuickCheck", { connection: connection });
 pollQueue.add("poll", {}, { repeat: { pattern: config.pattern } });
 
